@@ -20,7 +20,7 @@ public class P68 {
 		Random r = new Random();
 		int rndNum = r.nextInt(10);
 		// int rndNum = r.nextInt(10) + 1; -> 1부터 10까지
-		System.out.println(rndNum);
+		
 		
 		
 		
