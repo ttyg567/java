@@ -5,6 +5,7 @@ import java.util.Random;
 public class P68 {
 
 	public static void main(String[] args) {
+		String s2 = "11";
 		String s1 = "10";
 		int s2 = Integer.parseInt(s1);
 		System.out.println(s1 + 10);  //출력값: 1010  -> 10을 강제로 문자로 바꿈
