@@ -2,7 +2,7 @@ package variable;
 
 import java.util.Scanner;
 
-public class P731 {
+public class P73 {
 
 	public static void main(String[] args) {
 		int a = 10;
