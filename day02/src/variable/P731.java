@@ -2,10 +2,11 @@ package variable;
 
 import java.util.Scanner;
 
-public class P73 {
+public class P731 {
 
 	public static void main(String[] args) {
 		int a = 10;
+		String str = ""; 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("명령어를 입력 하시오(q, i, d, s)");
 		String cmd = sc.next(); //화면에 입력한 값을 가져온다는 것
