@@ -1,4 +1,4 @@
-package ws0228;
+package Ws0228;
 
 public class Ws {
 
