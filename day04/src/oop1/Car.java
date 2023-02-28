@@ -14,6 +14,7 @@ public class Car {
 		size = 1000;
 	}
 	
+	//아래 argument 를 정의하는 constructor가 있을 때는 default constructor가 반드시 필요함
 	public Car(String name, String color, int size) { 
 		this.name = name;    //this는 app 파일에서 지정한 것을 넣어주는 역할
 		this.color = color;
