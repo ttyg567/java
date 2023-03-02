@@ -1,5 +1,5 @@
 package ws0228;
-
+// dd
 public class Manager {
 
 	private String name;

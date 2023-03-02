@@ -5,6 +5,7 @@ public class Employee {
 //	Employee와 Manager 클래스를 설계 하시오(UML 제출)
 //	Manager 는 보너스가 추가 됨
 //	연봉과 세금을 계산 하는 기능을 구현 하시오
+	//v
 	
 	// 속성 정의: name, salary
 	private String name;

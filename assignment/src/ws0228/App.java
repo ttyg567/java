@@ -1,10 +1,11 @@
-package ws0228;
+package ws0228;  
 
 public class App {
 
 	public static void main(String[] args) {
 		
 		// Employee 5명을 배열로 만들기
+		//v 
 		Employee eList[] = new Employee[5];
 		eList[0] = new Employee("e1", 5000000);
 		eList[1] = new Employee("e2", 5000000);
