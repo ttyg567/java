@@ -30,11 +30,12 @@ public class App {
 				System.out.println("Input Balance: ");
 				double balance = Double.parseDouble(sc.next());
 				try {
-				acc = new Account(name, accHolder, balance);
+					acc = new Account(name, accHolder, balance);
+					System.out.println(acc);
 				} catch (BelowZeroException e1) { 
 					System.out.println(e1.getMessage());
 				}
-				System.out.println(acc);
+				
 				
 			
 			// *********** 계좌 출금 ***************	

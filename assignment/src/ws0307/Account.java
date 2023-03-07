@@ -20,7 +20,7 @@ public class Account {
 		this.name = name;
 		this.accHolder = accHolder;
 		if (balance < 0) {
-            throw new BelowZeroException("Balance must be greater than zero");
+            throw new BelowZeroException("잔액은 0보다 커야합니다.");
         }
 		this.balance = balance;
 	}
@@ -33,6 +33,7 @@ public class Account {
 		this.balance = balance;
 	}
 
+	// 계좌 정보 조회
 	@Override
 	public String toString() {
 		return "Account [accNo=" + accNo + ", name=" + name + ", accHolder=" + accHolder + ", balance=" + balance + "]";
@@ -49,7 +50,7 @@ public class Account {
 		
 		// 음수 예외
 		if (money < 0) {
-			throw new BelowZeroException("음수 입력.");	
+			throw new BelowZeroException("음수를 입력하였습니다.");	
 		}
 		
 		balance += money;
@@ -62,12 +63,12 @@ public class Account {
 	public void withdraw(double money) throws BelowZeroException, ZeroBalanceException {
 		//잔액부족 예외
 		if (money > balance) {
-			throw new BelowZeroException("잔액 부족.");	
+			throw new BelowZeroException("잔액이 부족 합니다.");	
 		}
 		
 		// 음수 예외
 		if (money < 0) {
-			throw new BelowZeroException("음수 입력.");	
+			throw new BelowZeroException("음수를 입력하였습니다.");	
 		}
 		this.balance -= money;
 	}
