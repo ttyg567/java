@@ -19,7 +19,7 @@ public class Account {
 		this();
 		this.name = name;
 		this.accHolder = accHolder;
-		if (balance < 0) {
+		if (balance < 0) {   // this.balance 로 입력하면 안됨, 아직 생성되지 않았기 때문
             throw new BelowZeroException("잔액은 0보다 커야합니다.");
         }
 		this.balance = balance;
@@ -63,13 +63,14 @@ public class Account {
 	public void withdraw(double money) throws BelowZeroException, ZeroBalanceException {
 		//잔액부족 예외
 		if (money > balance) {
-			throw new BelowZeroException("잔액이 부족 합니다.");	
+			throw new ZeroBalanceException("잔액이 부족 합니다.");	
 		}
 		
 		// 음수 예외
 		if (money < 0) {
 			throw new BelowZeroException("음수를 입력하였습니다.");	
 		}
+		
 		this.balance -= money;
 	}
 }
