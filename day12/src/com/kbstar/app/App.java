@@ -1,5 +1,6 @@
 package com.kbstar.app;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.kbstar.dto.AccountDTO;
@@ -26,7 +27,7 @@ public class App {
 			if(cmd.equals("q")) {
 				break;
 			} else if(cmd.equals("r")) {
-				System.out.println("Regiter ...");
+				System.out.println("Regiter ... id, pwd, name, email, contact");
 				String id = sc.next();
 				String pwd = sc.next();
 				String name = sc.next();
@@ -44,7 +45,7 @@ public class App {
 				
 				
 			} else if(cmd.equals("l")) {
-				System.out.println("Login ...");
+				System.out.println("Login ... id, pwd");
 				String id = sc.next();
 				String pwd = sc.next();
 				user = null;
@@ -58,8 +59,8 @@ public class App {
 						String cmn = sc.next();
 						if(cmn.equals("e")) {   // 다시 로그인 화면으로 돌아감
 							break;
-						} else if(cmn.equals("m")) {
-							System.out.println("Make Account ...");
+						} else if(cmn.equals("m" )) {
+							System.out.println("Make Account ... balance, accHolder?(string)");
 							double balance = Double.parseDouble(sc.next());
 							service.makeAccount(user.getId(), balance);
 							
@@ -75,7 +76,11 @@ public class App {
 							
 						} else if(cmn.equals("a")) {
 							System.out.println("select Account ...");
-							
+							List<AccountDTO> list = null;
+							list = service.getAllAccount(user.getId());
+							for(AccountDTO acc:list) {
+								System.out.println(acc);
+							}
 						} else if(cmn.equals("i")) {
 							System.out.println("User Info ...");
 							String rid = user.getId();
@@ -86,7 +91,12 @@ public class App {
 							
 						} else if(cmn.equals("tr")) {
 							System.out.println("Select Transaction ...");
-							
+							String accNo = sc.next();
+							List<TransactionDTO> list = null;
+							list = service.getAllTr(accNo);
+							for(TransactionDTO tr:list) {
+								System.out.println(tr);
+							}
 						}
 					}
 					
