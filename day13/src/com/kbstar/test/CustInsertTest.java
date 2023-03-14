@@ -1,7 +1,5 @@
 package com.kbstar.test;
 
-import java.util.List;
-
 import com.kbstar.dto.Cust;
 import com.kbstar.frame.CRUDService;
 import com.kbstar.service.CustCRUDServiceImpl;
@@ -15,7 +13,7 @@ public class CustInsertTest {
 		
 		
 		/*------------------------------Register------------------------------*/
-		Cust cust = new Cust("id82", "pwd20", "tomtom", 30);
+		Cust cust = new Cust("id2", "pwd20", "tom", 30);
 		try {
 			crudService.register(cust);
 			System.out.println("성공");

@@ -15,27 +15,26 @@ public class CustCRUDServiceImpl implements CRUDService<String, Cust>{
 	public CustCRUDServiceImpl() {
 		dao = new CustDaoImpl();
 	}
-	
-	
-	/*------------------------------Register------------------------------*/
+
+/*------------------------------Register------------------------------*/
 	@Override
 	public void register(Cust v) throws Exception {
-		//데이터 검증
+		// 데이터 검증
 		// DB 입력
 		try {
 			dao.insert(v);
-		} catch(Exception e) {
+		}catch(Exception e) {
 			if(e instanceof SQLIntegrityConstraintViolationException) {
 				throw new Exception("ID가 중복 되었습니다.");
-			} else {
-				throw new Exception("시스템 장애입니다.."); 
+
+			}else {
+				throw new Exception("시스템 장애 입니다.");
+
 			}
 		}
 		// Email, SMS
 	}
-	
-	
-	/*------------------------------Remove------------------------------*/
+/*------------------------------Remove------------------------------*/
 	@Override
 	public void remove(String k) throws Exception {
 		try {
@@ -46,15 +45,9 @@ public class CustCRUDServiceImpl implements CRUDService<String, Cust>{
 			} else {
 				throw new Exception("해당 ID가 존재하지 않습니다.");
 			}
-			
-			
-		}
-		
+		}	
 	}
-	
-	
-	
-	/*------------------------------Modify------------------------------*/
+/*------------------------------Modify------------------------------*/
 	@Override
 	public void modify(Cust v) throws Exception {
 		try {
