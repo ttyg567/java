@@ -7,16 +7,16 @@ import com.kbstar.service.CartCRUDServiceImpl;
 public class CartSelectTest {
 
 	public static void main(String[] args) {
-		CRUDService<String, Cart> CartService = 
-				new CartCRUDServiceImpl();
-		
-		Cart obj = new Cart("ideddd", "ddddef", 2);
+		CRUDService<String, Cart> crudService = new CartCRUDServiceImpl();
+
+		Cart cart = null;
 		try {
-			CartService.register(obj);
-			System.out.println("성공");
+			cart = crudService.get("2023314941100");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			return;
 		}
+		System.out.println(cart);
 
 	}
 

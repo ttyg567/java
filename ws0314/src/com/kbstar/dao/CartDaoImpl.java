@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -77,22 +78,22 @@ public class CartDaoImpl implements DAO<String, String, Cart> {
 	@Override
 	public Cart select(String k) throws Exception {
 		Cart cart = null;
-//		try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(Sql.cartSelectSql);) {
-//			pstmt.setString(1, k);
-//			try (ResultSet rset = pstmt.executeQuery()) {
-//				rset.next();
-//				String id = rset.getString("id");
-//				String user_name = rset.getString("user_name");
-//				String item_name = rset.getString("item_name");
-//				int price = rset.getInt("price");
-//				Date regdate = rset.getDate("regdate");
-//				item = new Item(id, name, price, rate, regdate);
-//			} catch (Exception e) {
-//				throw e;
-//			}
-//		} catch (Exception e) {
-//			throw e;
-//		}
+		try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(Sql.cartSelectSql);) {
+			pstmt.setString(1, k);
+			try (ResultSet rset = pstmt.executeQuery()) {
+				rset.next();
+				String id = rset.getString("id");
+				String user_id = rset.getString("user_id");
+				String item_id = rset.getString("item_id");
+				int cnt = rset.getInt("cnt");
+				Date regdate = rset.getDate("regdate");
+				cart = new Cart(id, user_id, item_id, cnt, regdate);
+			} catch (Exception e) {
+				throw e;
+			}
+		} catch (Exception e) {
+			throw e;
+		}
 		
 		return cart;
 	}
@@ -100,8 +101,26 @@ public class CartDaoImpl implements DAO<String, String, Cart> {
 /*------------------------------SelectAll------------------------------*/
 	@Override
 	public List<Cart> selectAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Cart> list = new ArrayList<>();
+		Cart cart = null;
+		try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(Sql.cartSelectAllSql);) {
+			try (ResultSet rset = pstmt.executeQuery()) {
+				while (rset.next()) {
+					String id = rset.getString("id");
+					String user_id = rset.getString("user_id");
+					String item_id = rset.getString("item_id");
+					int cnt = rset.getInt("cnt");
+					Date regdate = rset.getDate("regdate");
+					cart = new Cart(id, user_id, item_id, cnt, regdate);
+					list.add(cart);
+				}
+			} catch (Exception e) {
+				throw e;
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+		return list;
 	}
 
 	@Override
