@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -17,7 +18,7 @@ public class CustDaoImpl implements DAO<String, String, Cust> {
 
 	public CustDaoImpl() {
 
-		/* Driver Loading --------------------------------------- */
+/* Driver Loading --------------------------------------------------------- */
 		// 이 객체가 생성이 되면 드라이버가 한번 올라온다
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
@@ -106,25 +107,29 @@ public class CustDaoImpl implements DAO<String, String, Cust> {
 	/*------------------------------Select------------------------------*/
 	@Override
 	public Cust select(String k) throws Exception {
-		try(Connection con = getConnection(); 
-				PreparedStatement pstmt = con.prepareStatement(Sql.selectSql); ) {
+		Cust cust = null;
+		try(Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(Sql.selectSql)) {
 			pstmt.setString(1, k);
-			try(ResultSet rset = pstmt.executeQuery()){
+			
+			try(ResultSet rset = pstmt.executeQuery()) {
 				rset.next();
-				String db_id = rset.getString("id");
-				String db_pwd = rset.getString("pwd");
+				String id = rset.getString("id");
+				String pwd = rset.getString("pwd");
 				String name = rset.getString("name");
 				int age = rset.getInt("age");
-				Cust daoCust = new Cust(db_id, db_pwd, name, age);
-				return daoCust;
+				cust = new Cust(id, pwd, name, age);
 				
-			}catch(SQLException e) {
-				throw new Exception("오류");
-			}
+			} catch (Exception e) {
+				// 목록에 없을 때 예외 발생 
+				throw e;
+			}	
 			
-		} catch (SQLException e1) {
-			throw new Exception("오류");
-		} 
+		}catch(Exception e) {
+			// 서버가 없을 때 예외 발생
+			throw e;	
+		}
+		
+		return cust;
 	}
 	
 	
@@ -132,8 +137,26 @@ public class CustDaoImpl implements DAO<String, String, Cust> {
 
 	@Override
 	public List<Cust> selectAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Cust> list = new ArrayList<>();
+		try(Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(Sql.selectAllSql)) {
+			try(ResultSet rset = pstmt.executeQuery();) {
+				while (rset.next()) {
+					Cust cust = null;
+					String id = rset.getString("id");
+					String pwd = rset.getString("pwd");
+					String name = rset.getString("name");
+					int age = rset.getInt("age");
+					cust = new Cust(id, pwd, name, age);
+					list.add(cust);
+				}
+				
+			} catch(Exception e) {
+				
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+		return list;
 	}
 	
 	/*------------------------------Search------------------------------*/

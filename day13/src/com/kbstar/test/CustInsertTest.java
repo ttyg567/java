@@ -1,5 +1,7 @@
 package com.kbstar.test;
 
+import java.util.List;
+
 import com.kbstar.dto.Cust;
 import com.kbstar.frame.CRUDService;
 import com.kbstar.service.CustCRUDServiceImpl;
@@ -11,14 +13,15 @@ public class CustInsertTest {
 				new CustCRUDServiceImpl();
 		
 		
+		
 		/*------------------------------Register------------------------------*/
-//		Cust cust = new Cust("id81", "pwd20", "tom", 30);
-//		try {
-//			crudService.register(cust);
-//			System.out.println("성공");
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-//		}
+		Cust cust = new Cust("id82", "pwd20", "tomtom", 30);
+		try {
+			crudService.register(cust);
+			System.out.println("성공");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 //		
 //		
 	   /*------------------------------Remove------------------------------*/
@@ -43,30 +46,33 @@ public class CustInsertTest {
 		
 
 		/*------------------------------get------------------------------*/
-		try {
-			System.out.println(crudService.get("id66"));
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.out.println("error");
-		}
+		
+//		Cust cust = null;
+//		try {
+//			cust = crudService.get("id66");
+//			System.out.println(cust);
+//			
+//		} catch (Exception e) {
+//			System.out.println(e.getMessage());
+//		}
+		
+		/*------------------------------get all------------------------------*/
+		
+//		List<Cust> list = null;
+//		try {
+//			list = crudService.get();
+//			if(list.size() == 0) {
+//				System.out.println("데이터가 없습니다.");
+//			} else {
+//				for(Cust obj: list) {
+//				System.out.println(obj);
+//				}
+//			}
+//		}catch (Exception e) {
+//			System.out.println(e.getMessage());
+//		}
 		
 		
-		
-		
-		
-		
-		
-		
-		
-
-		/*------------------------------SelectAll------------------------------*/
-		
-		
-		
-		
-		
-
 	}
 
 }
